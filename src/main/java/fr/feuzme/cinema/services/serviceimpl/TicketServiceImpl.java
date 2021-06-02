@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.feuzme.cinema.models.Ticket;
 import fr.feuzme.cinema.repositories.TicketRepository;
 import fr.feuzme.cinema.services.GenericService;
+import fr.feuzme.cinema.services.TicketService;
 
-public class TicketServiceImpl implements GenericService<Ticket> {
+public class TicketServiceImpl implements TicketService {
 	@Autowired
 	private TicketRepository ticketRepo;
 	
@@ -45,7 +46,7 @@ public class TicketServiceImpl implements GenericService<Ticket> {
 	public String generateTicket(String id) {
 		Ticket ticket = this.ticketRepo.findById(id).get();
 		String impTicket = "Commande : " + ticket.getSceance().getId()+
-				"\nFilm : " + ticket.getSceance().getFilm() + 
+				"\nFilm : " + ticket.getSceance().getFilm().getNom() + 
 				"\nDebut : " + ticket.getSceance().getDateDebut() +
 				"\nFin : " + (ticket.getSceance().getDateDebut().plusMinutes(ticket.getSceance().getFilm().getDuree()));
 		return impTicket;

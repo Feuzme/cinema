@@ -14,7 +14,7 @@ import lombok.Data;
 public class Film {
 	@Id
 	private String id;
-	private String name;
+	private String nom;
 	private Integer duree;
 	
 }

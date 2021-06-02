@@ -32,13 +32,17 @@ public class SceanceServiceImpl implements GenericService<Sceance> {
 
 	@Override
 	public Sceance update(Sceance entity) {
-		// TODO Auto-generated method stub
+		Sceance sceanceBdd = this.sceanceRepo.findById(entity.getId()).get();
+		
+		entity.setDateDebut(entity.getDateDebut() == null ? sceanceBdd.getDateDebut() : entity.getDateDebut());
+		entity.setFilm(entity.getFilm()== null ? sceanceBdd.getFilm() : entity.getFilm());
+		entity.setSalle(entity.getSalle() == null ? sceanceBdd.getSalle() : entity.getSalle());
+		
 		return this.sceanceRepo.save(entity);
 	}
 
 	@Override
 	public void deleteById(String id) {
-		// TODO Auto-generated method stub
 		this.sceanceRepo.deleteById(id);
 	}	
 }

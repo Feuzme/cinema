@@ -31,6 +31,11 @@ public class FilmServiceImpl implements GenericService<Film> {
 
 	@Override
 	public Film update(Film entity) {
+		Film filmBdd = this.filmRepo.findById(entity.getId()).get();
+		
+		entity.setNom(entity.getNom() == null ? filmBdd.getNom() : entity.getNom());
+		entity.setDuree(entity.getDuree() == null ? filmBdd.getDuree() : entity.getDuree());
+		
 		return this.filmRepo.save(entity);
 	}
 

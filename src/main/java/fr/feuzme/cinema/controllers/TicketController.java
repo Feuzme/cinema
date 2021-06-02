@@ -15,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.feuzme.cinema.models.Ticket;
 import fr.feuzme.cinema.services.GenericService;
+import fr.feuzme.cinema.services.TicketService;
 import fr.feuzme.cinema.services.serviceimpl.TicketServiceImpl;
 
 @RestController
 @RequestMapping("tickets")
 public class TicketController {
 	@Autowired
-	private GenericService<Ticket> ticketService;
+	private TicketService ticketService;
 	
 	@GetMapping()
 	public List<Ticket> listAll(){
@@ -35,7 +36,7 @@ public class TicketController {
 	
 	@GetMapping("{id}/ticket")
 	public String impTicket(@PathVariable String id) {
-		return ((TicketServiceImpl) this.ticketService).generateTicket(id);
+		return this.ticketService.generateTicket(id);
 	}
 	
 	@PostMapping()

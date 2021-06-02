@@ -32,7 +32,10 @@ public class CinemaServiceImpl implements GenericService<Cinema> {
 
 	@Override
 	public Cinema update(Cinema entity) {
-		// TODO Auto-generated method stub
+		Cinema cinemaBdd = this.cinemaRepo.findById(entity.getId()).get();
+		
+		entity.setNom(entity.getNom() != null ? entity.getNom() : cinemaBdd.getNom());
+		
 		return this.cinemaRepo.save(entity);
 	}
 
