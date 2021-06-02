@@ -10,40 +10,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.feuzme.cinema.models.Cinema;
+import fr.feuzme.cinema.models.Sceance;
 import fr.feuzme.cinema.services.GenericService;
 
 @RestController
-@RequestMapping("cinemas")
-public class CinemaController {
+@RequestMapping("sceances")
+public class SceanceController {
 	@Autowired
-	private GenericService<Cinema> cinemaService;
+	private GenericService<Sceance> sceanceService;
 	
 	@GetMapping()
-	public List<Cinema> listAll(){
-		return this.cinemaService.getAll();
+	public List<Sceance> listAll(){
+		return this.sceanceService.getAll();
 	}
 	
 	@GetMapping("{id}")
-	public Cinema listById(@PathVariable String id) {
-		return this.cinemaService.getById(id);
+	public Sceance listById(@PathVariable String id) {
+		return this.sceanceService.getById(id);
 	}
 	
 	@PostMapping()
-	public Cinema add(@RequestBody Cinema cinema) {
-		return this.cinemaService.add(cinema);
+	public Sceance add(@RequestBody Sceance sceance) {
+		return this.sceanceService.add(sceance);
 	}
 	
-	@PutMapping()
-	public Cinema update(@RequestBody Cinema cinema) {
-		return this.cinemaService.update(cinema);
+	@PutMapping("{id}")
+	public Sceance update(@PathVariable String id, @RequestBody Sceance sceance) {
+		return this.sceanceService.update(sceance);
 	}
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable String id) {
-		this.cinemaService.deleteById(id);
+		this.sceanceService.deleteById(id);
 	}
 }
