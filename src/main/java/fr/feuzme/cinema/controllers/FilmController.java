@@ -13,13 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.feuzme.cinema.models.Film;
+import fr.feuzme.cinema.services.FilmService;
 import fr.feuzme.cinema.services.GenericService;
+import fr.feuzme.cinema.services.serviceimpl.FilmServiceImpl;
 
 @RestController
 @RequestMapping("films")
 public class FilmController {
 	@Autowired
-	private GenericService<Film> filmService;
+	private FilmService filmService;
 	
 	@GetMapping()
 	public List<Film> listAll(){
@@ -29,6 +31,11 @@ public class FilmController {
 	@GetMapping("{id}")
 	public Film listById(@PathVariable String id) {
 		return this.filmService.getById(id);
+	}
+	
+	@GetMapping("nom/{nom}")
+	public List<Film> findByNomLike(@PathVariable String nom){
+		return this.filmService.findByNom(nom);
 	}
 	
 	@PostMapping()

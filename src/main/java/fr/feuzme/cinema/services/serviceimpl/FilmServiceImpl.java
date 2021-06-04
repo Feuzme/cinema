@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.feuzme.cinema.models.Film;
 import fr.feuzme.cinema.repositories.FilmRepository;
+import fr.feuzme.cinema.services.FilmService;
 import fr.feuzme.cinema.services.GenericService;
 
-public class FilmServiceImpl implements GenericService<Film> {
+public class FilmServiceImpl implements FilmService {
 
 	@Autowired
 	private FilmRepository filmRepo;
@@ -42,6 +43,12 @@ public class FilmServiceImpl implements GenericService<Film> {
 	@Override
 	public void deleteById(String id) {
 		this.filmRepo.deleteById(id);
+	}
+
+	@Override
+	public List<Film> findByNom(String nom) {
+		// TODO Auto-generated method stub
+		return this.filmRepo.findByNomLike(nom);
 	}
 
 }

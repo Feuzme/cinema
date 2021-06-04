@@ -8,7 +8,9 @@ import fr.feuzme.cinema.models.Film;
 import fr.feuzme.cinema.models.Salle;
 import fr.feuzme.cinema.models.Sceance;
 import fr.feuzme.cinema.models.Ticket;
+import fr.feuzme.cinema.services.FilmService;
 import fr.feuzme.cinema.services.GenericService;
+import fr.feuzme.cinema.services.TicketService;
 import fr.feuzme.cinema.services.serviceimpl.CinemaServiceImpl;
 import fr.feuzme.cinema.services.serviceimpl.FilmServiceImpl;
 import fr.feuzme.cinema.services.serviceimpl.SalleServiceImpl;
@@ -18,7 +20,7 @@ import fr.feuzme.cinema.services.serviceimpl.TicketServiceImpl;
 @Configuration
 public class ServicesConfig {
 	@Bean
-	public GenericService<Film> filmService() {
+	public FilmService filmService() {
 		return new FilmServiceImpl();
 	}
 	
@@ -38,7 +40,7 @@ public class ServicesConfig {
 	}
 	
 	@Bean
-	public GenericService<Ticket> ticketService(){
+	public TicketService ticketService(){
 		return new TicketServiceImpl();
 	}
 }
